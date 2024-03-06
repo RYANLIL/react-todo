@@ -5,13 +5,13 @@ export default function TodoList({
   toDos,
   setToDos,
 }: {
-  toDos: string[];
+  toDos: [{ todo: string; status: boolean }];
   setToDos: React.Dispatch<React.SetStateAction<string[]>>;
 }) {
   return (
     <div className={styles.list}>
       {toDos.map((i) => (
-        <TodoItem key={i} item={i} toDos={toDos} setToDos={setToDos} />
+        <TodoItem key={i.name} item={i} toDos={toDos} setToDos={setToDos} />
       ))}
     </div>
   );

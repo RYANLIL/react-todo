@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import styles from "./Form.module.css";
 export default function Form({ toDos, setToDos }) {
-  const [toDo, setToDo] = useState("");
+  //const [toDo, setToDo] = useState("");
+  const [toDo, setToDo] = useState({ name: "", status: false });
 
   function postTodo(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setToDos([...toDos, toDo]);
-    setToDo("");
+    setToDo({ name: "", status: false });
     console.log(toDos);
   }
 
@@ -15,8 +16,8 @@ export default function Form({ toDos, setToDos }) {
       <div className={styles.inputContainer}>
         <input
           className={styles.modernInput}
-          value={toDo}
-          onChange={(e) => setToDo(e.target.value)}
+          value={toDo.name}
+          onChange={(e) => setToDo({ name: e.target.value, status: false })}
           type="text"
           placeholder="Enter To Do Item"
         />

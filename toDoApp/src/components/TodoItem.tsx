@@ -4,24 +4,44 @@ export default function TodoItem({
   toDos,
   setToDos,
 }: {
-  item: string;
-  toDos: string[];
+  item: object;
+  toDos: [object];
   setToDos;
 }) {
   function deleteTodo(deletedItem) {
-    console.log(`${item} Deleted`);
+    console.log(`${deletedItem} Deleted`);
     /**Loop thorough entire todos list if the current item does
      * not equal the deleted item keep item in list
      */
-    const filteredList = toDos.filter((todo) => todo !== deletedItem);
+    const filteredList = toDos.filter((todo) => todo.name !== deletedItem.name);
     setToDos(filteredList);
   }
-  function markComplete(completeItem) {}
+  function toggleStatus(todoName) {
+    //const updatedList = toDos.map();
+    console.log(`clicked ${todoName}`);
+    // const filteredList = toDos.map((todo) => {
+    //   if (todoName === todo.name) {
+    //     console.log(todo);
+    //     todo.status = !todo.status;
+    //   }
+    //   return todo;
+    // });
+
+    const filteredList = toDos.map((todo) =>
+      todo.name === todoName ? { ...todo, status: !todo.status } : todo
+    );
+    //console.log(filteredList);
+    setToDos(filteredList);
+  }
+  //Setting strike through for class
+  const className = item.status ? styles.statusCompleted : "";
 
   return (
     <div className={styles.item}>
       <div className={styles.itemName}>
-        {item}
+        <span className={className} onClick={(e) => toggleStatus(item.name)}>
+          {item.name}
+        </span>
         <span>
           <button
             className={styles.deleteButton}
