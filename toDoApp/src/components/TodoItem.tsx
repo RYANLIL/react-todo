@@ -17,8 +17,7 @@ export default function TodoItem({
     setToDos(filteredList);
   }
   function toggleStatus(todoName) {
-    //const updatedList = toDos.map();
-    console.log(`clicked ${todoName}`);
+    //    console.log(`clicked ${todoName}`);
     // const filteredList = toDos.map((todo) => {
     //   if (todoName === todo.name) {
     //     console.log(todo);
